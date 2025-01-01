@@ -24,7 +24,7 @@ function App() {
   },[]);
 
   return !loading ? (<div className='bg-red-400 min-h-screen flex-wrap content-between'>
-    <div className='w-full block'>
+    <div className='w-full block text-center'>
       <Header />
       <main>
         {/* <Outlet /> */}

@@ -3,8 +3,8 @@ import { login, logout } from "./authSlice";
 
 const store = configureStore({
     reducer: {
-        login,
-        logout
+        auth : authSlice,
+        //TODO: add more slices here for posts
     },
 });
 
