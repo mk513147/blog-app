@@ -1,4 +1,3 @@
-import './App.css'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import authService from './appwrite/auth'
@@ -23,15 +22,18 @@ function App() {
     .finally(()=> setLoading(false))
   },[]);
 
-  return !loading ? (<div className='bg-red-400 min-h-screen flex-wrap content-between'>
-    <div className='w-full block text-center'>
-      <Header />
-      <main>
-        {/* <Outlet /> */}
-      </main>
-      <Footer />
+  return !loading ? (
+    <>
+      <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+      <div className='w-full block'>
+        <Header />
+        <main>
+        <Outlet />
+        </main>
+      </div>
     </div>
-  </div>
+        <Footer />
+  </>
   ): null
 }
 

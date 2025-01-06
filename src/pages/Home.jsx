@@ -19,7 +19,7 @@ function Home () {
         <Container>
           <div className='flex flex-wrap'>
             <h1 className='text-2xl font-bold hover:text-gray-500'>
-              Login to read posts
+              NO POSTS FOUND
             </h1>
           </div>
         </Container>
@@ -31,8 +31,8 @@ function Home () {
       <Container>
         <div className='flex flex-wrap'>
           {posts.map(post => (
-            <div className='p-2 w-1/4'>
-              <PostCard {...post} />
+            <div key={post.$id} className='p-2 w-1/4'>
+              <PostCard post={post} />
             </div>
           ))}
         </div>

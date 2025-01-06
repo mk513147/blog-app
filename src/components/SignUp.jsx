@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { login as storeLogin } from '../store/authSlice'
+import { login } from '../store/authSlice'
 import { Button, Input, Logo } from './inde'
 import { useDispatch } from 'react-redux'
 import authService from '../appwrite/auth'
@@ -12,16 +12,14 @@ function SignUp () {
   const { register, handleSubmit } = useForm()
   const [error, setError] = useState(null)
 
-  const signup = async data => {
+  const handleSignUp = async data => {
     setError('')
     try {
       const account = await authService.createAccount(data)
       if (account) {
         const userData = await authService.getCurrentUser()
-        if (userData) {
-          dispatch(storeLogin(userData))
-          navigate('/')
-        }
+        if (userData) dispatch(login(userData));
+        navigate('/')
       }
     } catch (error) {
       setError(error.message)
@@ -35,6 +33,7 @@ function SignUp () {
             <Logo width='100%' />
           </span>
         </div>
+
         <h2 className='text-center text-2xl font-bold leading-tight'>
           Create an account
         </h2>
@@ -48,7 +47,7 @@ function SignUp () {
           </Link>
         </p>
         {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
-        <form onSubmit={handleSubmit(signup)}>
+        <form onSubmit={handleSubmit(handleSignUp)}>
           <div className='space-y-5'>
             <Input
               label='Full Name:'
